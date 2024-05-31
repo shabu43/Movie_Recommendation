@@ -7,6 +7,7 @@ credits_df = pd.read_csv("/Users/shabu/Desktop/Movie_Recommendation/databases/cr
 movies_df = pd.read_csv("/Users/shabu/Desktop/Movie_Recommendation/databases/movies.csv")
 
 #printing details of both datasets
+"""
 print("\nCredits head")
 print(credits_df.head())
 
@@ -26,3 +27,15 @@ print(credits_df.shape)
 print("\nCredits info")
 print(movies_df.info())
 print(movies_df.shape)
+"""
+
+#Merging/joining both dataset together based on movie Title
+Mmovies_df = movies_df.merge(credits_df,on = "title")
+
+#finding missing values in the dataset
+print(Mmovies_df.isna().sum())
+#dropping necessary coulumn's missing rows. [only 4 missng overviw, 1 release date]
+Mmovies_df = Mmovies_df.dropna(subset=["overview","release_date"])
+print(Mmovies_df.isna().sum())
+print(Mmovies_df.shape)
+
