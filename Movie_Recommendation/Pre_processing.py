@@ -39,3 +39,15 @@ Mmovies_df = Mmovies_df.dropna(subset=["overview","release_date"])
 print(Mmovies_df.isna().sum())
 print(Mmovies_df.shape)
 
+#Transform Release date from speicific date to decades form .
+#https://stackoverflow.com/questions/71460233/how-can-i-extract-the-year-from-object-column
+#change date datatype from object to datetime to extract only year then decades.
+Mmovies_df['release_date'] = pd.to_datetime(Mmovies_df['release_date'], format="mixed")
+Mmovies_df['release_date'] = Mmovies_df['release_date'].apply(lambda x: x.year)
+Mmovies_df['release_date'] = Mmovies_df['release_date']/10
+Mmovies_df['release_date'] = Mmovies_df['release_date'].astype('int')
+Mmovies_df['release_date'] = Mmovies_df['release_date'].astype('object')
+Mmovies_df.info()
+print(Mmovies_df['release_date'].min)
+
+
