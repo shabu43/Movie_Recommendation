@@ -46,7 +46,9 @@ Mmovies_df['release_date'] = pd.to_datetime(Mmovies_df['release_date'], format="
 Mmovies_df['release_date'] = Mmovies_df['release_date'].apply(lambda x: x.year)
 Mmovies_df['release_date'] = Mmovies_df['release_date']/10
 Mmovies_df['release_date'] = Mmovies_df['release_date'].astype('int')
-Mmovies_df['release_date'] = Mmovies_df['release_date'].astype('object')
+Mmovies_df['release_date'] = Mmovies_df.release_date.astype(str)
+#print(Mmovies_df['release_date'].min)
+
 #Mmovies_df.info()
 #print(Mmovies_df['release_date'].min)
 
@@ -56,7 +58,7 @@ Mmovies_df = Mmovies_df[["movie_id","title","overview","genres","keywords","cast
 
 import ast
 
-#transform Keywords and genres name to literals
+#transform Keywords and genres name to list of literals
 def transform(obj):
     List=[]
     
@@ -66,10 +68,11 @@ def transform(obj):
 
 Mmovies_df['genres']=Mmovies_df['genres'].apply(transform)
 Mmovies_df['keywords']=Mmovies_df['keywords'].apply(transform)
+
 #print(Mmovies_df["genres"].head())
 #print(Mmovies_df["keywords"].head())
 
-#transform cast name to literals, maximum 3 names.
+#transform cast name to list of literals, maximum 3 names.
 def transform1(obj):
     List=[]
     c=0
@@ -81,7 +84,7 @@ def transform1(obj):
 Mmovies_df['cast']=Mmovies_df['cast'].apply(transform1)
 #print(Mmovies_df["cast"].head())
 
-#transform in crew and keep only Director name as literal.
+#transform in crew and keep only Director name as list of literal.
 def transform2(obj):
     List=[]
     
@@ -90,14 +93,25 @@ def transform2(obj):
             List.append(i["name"])
     return List
 Mmovies_df['crew']=Mmovies_df['crew'].apply(transform2)
-print(Mmovies_df["crew"].head())
+#print(Mmovies_df["crew"].head())
 
 Mmovies_df['overview'] = Mmovies_df['overview'].apply(lambda x:x.split())
 Mmovies_df['genres'] = Mmovies_df['genres'].apply(lambda x:[i.replace(" ","") for i in x])
 Mmovies_df['crew'] = Mmovies_df['crew'].apply(lambda x:[i.replace(" ","") for i in x])
-Mmovies_df['cast'] = Mmovies_df['cast'].apply(lambda x:[i.replace(" ","") for i in x])
+Mmovies_df['cast'] = Mmovies_df['cast'].apply(lambda x:[i.replace(" "," ") for i in x])
 Mmovies_df['keywords'] = Mmovies_df['keywords'].apply(lambda x:[i.replace(" ","") for i in x])
+#print(Mmovies_df["overview"].head())
 
+#transform release_date to list of literals
+def transform3(obj):
+    List=[]
+    c=0
+    for i in obj:
+        if c==0:
+            List.append(obj)
+            c=c+1
+    return List
+Mmovies_df['release_date']=Mmovies_df['release_date'].apply(transform3)
+print(Mmovies_df["release_date"].head())
 
-print(Mmovies_df["overview"].head())
 
