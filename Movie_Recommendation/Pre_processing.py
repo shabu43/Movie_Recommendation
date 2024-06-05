@@ -78,5 +78,5 @@ def transform1(obj):
             List.append(i["name"])
             c=c+1
     return List
-Mmovies_df['cast']=Mmovies_df['cast'].apply(transform1)\
+Mmovies_df['cast']=Mmovies_df['cast'].apply(transform1)
 print(Mmovies_df["cast"].head())
