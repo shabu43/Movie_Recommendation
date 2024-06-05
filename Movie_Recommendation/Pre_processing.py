@@ -79,4 +79,25 @@ def transform1(obj):
             c=c+1
     return List
 Mmovies_df['cast']=Mmovies_df['cast'].apply(transform1)
-print(Mmovies_df["cast"].head())
+#print(Mmovies_df["cast"].head())
+
+#transform in crew and keep only Director name as literal.
+def transform2(obj):
+    List=[]
+    
+    for i in ast.literal_eval(obj):
+        if i["job"]=="Director":
+            List.append(i["name"])
+    return List
+Mmovies_df['crew']=Mmovies_df['crew'].apply(transform2)
+print(Mmovies_df["crew"].head())
+
+Mmovies_df['overview'] = Mmovies_df['overview'].apply(lambda x:x.split())
+Mmovies_df['genres'] = Mmovies_df['genres'].apply(lambda x:[i.replace(" ","") for i in x])
+Mmovies_df['crew'] = Mmovies_df['crew'].apply(lambda x:[i.replace(" ","") for i in x])
+Mmovies_df['cast'] = Mmovies_df['cast'].apply(lambda x:[i.replace(" ","") for i in x])
+Mmovies_df['keywords'] = Mmovies_df['keywords'].apply(lambda x:[i.replace(" ","") for i in x])
+
+
+print(Mmovies_df["overview"].head())
+
