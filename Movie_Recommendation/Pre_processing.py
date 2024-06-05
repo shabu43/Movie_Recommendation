@@ -56,6 +56,7 @@ Mmovies_df = Mmovies_df[["movie_id","title","overview","genres","keywords","cast
 
 import ast
 
+#transform Keywords and genres name to literals
 def transform(obj):
     List=[]
     
@@ -65,5 +66,17 @@ def transform(obj):
 
 Mmovies_df['genres']=Mmovies_df['genres'].apply(transform)
 Mmovies_df['keywords']=Mmovies_df['keywords'].apply(transform)
-print(Mmovies_df["genres"].head())
-print(Mmovies_df["keywords"].head())
+#print(Mmovies_df["genres"].head())
+#print(Mmovies_df["keywords"].head())
+
+#transform cast name to literals, maximum 3 names.
+def transform1(obj):
+    List=[]
+    c=0
+    for i in ast.literal_eval(obj):
+        if c!=3:
+            List.append(i["name"])
+            c=c+1
+    return List
+Mmovies_df['cast']=Mmovies_df['cast'].apply(transform1)\
+print(Mmovies_df["cast"].head())
