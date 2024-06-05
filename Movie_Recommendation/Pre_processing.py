@@ -122,6 +122,9 @@ Mmovies_df = Mmovies_df[["movie_id","title","tags"]]
 Mmovies_df['tags'] = Mmovies_df['tags'].apply(lambda x: ' '.join(x))
 #print(Mmovies_df["tags"].head())
 
+
+print("\nPre-processing done!\n:\n:")
+
 #saving the processed dataframe
 print("\nSaving data...\n.\n.")
 Mmovies_df.to_csv('/Users/shabu/Desktop/Movie_Recommendation/databases/pre_processing_done.csv')
