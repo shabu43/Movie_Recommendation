@@ -1,6 +1,8 @@
 import numpy as np
 import pandas as pd
 from sklearn.datasets import load_iris
+import ast
+
 
 credits_df = pd.read_csv("/Users/shabu/Desktop/Movie_Recommendation/databases/credits.csv")
 
@@ -56,8 +58,6 @@ Mmovies_df['release_date'] = Mmovies_df.release_date.astype(str)
 
 Mmovies_df = Mmovies_df[["movie_id","title","overview","genres","keywords","cast","crew","release_date"]]
 
-import ast
-
 #transform Keywords and genres name to list of literals
 def transform(obj):
     List=[]
@@ -112,6 +112,13 @@ def transform3(obj):
             c=c+1
     return List
 Mmovies_df['release_date']=Mmovies_df['release_date'].apply(transform3)
-print(Mmovies_df["release_date"].head())
+#print(Mmovies_df["release_date"].head())
 
+# Create new column 'tags' with all columns tag together
+Mmovies_df['tags'] = Mmovies_df["overview"]+Mmovies_df["genres"] + Mmovies_df["keywords"]+Mmovies_df["cast"]+Mmovies_df["crew"]+Mmovies_df["release_date"]
+
+#reduce dataframe with movie identity and tags
+Mmovies_df = Mmovies_df[["movie_id","title","tags"]]
+Mmovies_df['tags'] = Mmovies_df['tags'].apply(lambda x: ' '.join(x))
+print(Mmovies_df["tags"].head())
 
