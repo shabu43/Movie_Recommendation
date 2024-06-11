@@ -7,7 +7,7 @@ This project aims to build a movie recommendation system using Natural Language 
 ## Python packages required
 pip install numpy pandas scikit-learn nltk
 
-# Data Preprocessing
+## Data Preprocessing
 - Load the credits.csv and movies.csv datasets.
 - Merge the datasets on the movie title.
 - Handle missing values by dropping rows with missing overview or release_date.
@@ -16,7 +16,7 @@ pip install numpy pandas scikit-learn nltk
 - Combine these features into a single tags column for each movie.
 - Save the processed DataFrame to pre_processing_done.csv.
   
-# Recommendation System
+## Recommendation System
 - Load the preprocessed dataset pre_processing_done.csv.
 - Create a TF-IDF vectorizer to transform the tags into vectors.
 - Apply Porter Stemmer to the tags to reduce words to their root forms.
