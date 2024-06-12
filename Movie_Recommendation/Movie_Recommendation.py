@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
-from sklearn.feature_extraction.text import CountVectorizer
+#from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 import nltk
 from nltk.stem import PorterStemmer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -8,7 +9,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 movies_df = pd.read_csv("/Users/shabu/Desktop/Movie_Recommendation/databases/pre_processing_done.csv")
 
 #creating vector with tokenize words from 'tags' created in pre-processing
-CountVe = CountVectorizer(max_features=5000, stop_words='english')
+CountVe = TfidfVectorizer(max_features=5000, stop_words='english')
 v = CountVe.fit_transform(movies_df["tags"]).toarray()
 
 #refining words to their root with porter-stemmer algo
@@ -45,4 +46,5 @@ for i in movies_df["title"]:
         break;
 if r == 0:
         print("sorry!! the movoie is Not recognized by the system!!\nPlease insert a correct Title")
+
 
