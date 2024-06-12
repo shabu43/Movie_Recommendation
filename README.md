@@ -11,7 +11,7 @@ This project aims to build a movie recommendation system using Natural Language 
 - movie_recommendation.py: The main script for preprocessing data, calculating similarities, and recommending movies.
 - README.md: Documentation file explaining the project.
 
-##Steps to Run the Project
+## Steps to Run the Project
 
 ### Python packages required
 pip install numpy pandas scikit-learn nltk
