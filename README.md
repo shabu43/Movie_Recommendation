@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This project aims to build a movie recommendation system using Natural Language Processing (NLP) techniques and cosine similarity. The recommendation system suggests movies based on the similarity of their tags, which are derived from various features of the movies such as genres, cast, crew, keywords, and an overview. The project involves preprocessing movie data, transforming it into meaningful features, and calculating similarities to provide recommendations.
+This project aims to build a movie recommendation system using Natural Language Processing (NLP) techniques and cosine similarity. The recommendation system suggests movies based on the similarity of their tags, which are derived from various features of the movies such as genres, cast, crew, keywords, and an overview. The project involves preprocessing movie data, transforming it into meaningful features, calculating similarities to provide recommendations and finally deployed live as a webservice.
 
 ## Project Files
 - credits.csv: Contains information about the cast and crew of movies.
@@ -12,7 +12,10 @@ This project aims to build a movie recommendation system using Natural Language 
 - README.md: Documentation file explaining the project.
 
 ## Steps to Run the Project
+- Live demo on webservice, link given below
 
+  or
+  
 ### Python packages required
 pip install numpy pandas scikit-learn nltk
 
@@ -33,6 +36,9 @@ pip install numpy pandas scikit-learn nltk
 - Define a recommend function to suggest movies based on a given title.
 
 To get movie recommendations, run the script (movie_recommendation.py) and input a movie title when prompted: "Enter a movie title:"
+
+## Live Demo
+[pythonanywhere](https://habiburshabu.pythonanywhere.com/)
 
 ## Conclusion
 
